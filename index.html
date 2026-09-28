@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Amber - your music and videos, saved on your own computer</title>
 <meta name="description" content="Amber is a desktop app for playing YouTube audio and saving videos up to 4K. Try the real interface right here.">
 <meta name="theme-color" content="#120c0f"><script>document.documentElement.className="js"</script>
@@ -108,7 +108,7 @@ h2.big{font:italic 500 clamp(32px,4.4vw,52px)/1.05 var(--serif);letter-spacing:-
 .steps li::after{content:"";position:absolute;top:22px;left:58px;right:12px;height:1.5px;background:linear-gradient(90deg,var(--amber),transparent)}
 .steps li:last-child::after{display:none}
 .steps b{display:block;font:600 20px var(--serif);margin-bottom:6px}.steps span{color:var(--dim);font-size:15px}
-.final{margin:96px 0 0;padding:72px 40px;border-radius:30px;text-align:center;border:1px solid var(--line);background:repeating-radial-gradient(circle at 50% 135%,transparent 0 26px,rgba(255,243,230,.05) 26px 27px),radial-gradient(600px 300px at 50% 0,rgba(242,164,75,.28),transparent 70%),rgba(255,243,230,.04)}
+.final{margin:96px 0 0;padding:72px 40px;border-radius:30px;text-align:center;border:1px solid var(--line);background:radial-gradient(600px 300px at 50% 0,rgba(242,164,75,.24),transparent 70%),linear-gradient(180deg,rgba(255,243,230,.05),rgba(242,164,75,.06))}
 .final h2{font:italic 500 clamp(34px,5vw,60px)/1.02 var(--serif);letter-spacing:-.03em;margin:0 0 14px}
 .final p{color:var(--dim);max-width:34em;margin:0 auto 28px}
 footer{padding:44px 0 56px;color:var(--faint);font-size:13.5px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:flex-start}
@@ -121,24 +121,103 @@ footer p{margin:0;max-width:44em}
 @media(max-width:940px){.hero{grid-template-columns:1fr;gap:34px}.vinyl{width:min(78%,330px)}.tour{grid-template-columns:repeat(2,1fr)}.bento{grid-template-columns:1fr}.card,.card.c3,.card.c6{grid-column:auto}.steps{grid-template-columns:1fr;gap:28px}.steps li::after{display:none}.facts{grid-template-columns:1fr 1fr}.facts div:nth-child(3){border-left:0}.facts div:nth-child(n+3){border-top:1px solid var(--line)}.links a:not(.btn){display:none}section{padding-top:72px}.final{padding:48px 22px}}
 @media(max-width:520px){.facts{grid-template-columns:1fr}.facts div+div{border-left:0;border-top:1px solid var(--line)}.minis{width:100%}.mini.w{width:auto;flex:1}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* ===== level 2 ===== */
+html{scroll-padding-top:76px}
+.aur{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.aur i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;will-change:transform;animation:drift 22s ease-in-out infinite alternate}
+.aur i:nth-child(1){width:46vmax;height:46vmax;left:-12vmax;top:-10vmax;background:rgba(242,164,75,.28)}
+.aur i:nth-child(2){width:38vmax;height:38vmax;right:-10vmax;top:30vh;background:rgba(190,70,60,.22);animation-duration:28s;animation-delay:-8s}
+.aur i:nth-child(3){width:30vmax;height:30vmax;left:30vw;bottom:-14vmax;background:rgba(255,208,138,.14);animation-duration:34s;animation-delay:-14s}
+@keyframes drift{to{transform:translate3d(9vw,6vh,0) scale(1.15)}}
+.spot{position:fixed;width:520px;height:520px;left:0;top:0;margin:-260px 0 0 -260px;z-index:-1;pointer-events:none;background:radial-gradient(circle,rgba(242,164,75,.10),transparent 62%);transform:translate3d(var(--sx,50vw),var(--sy,30vh),0)}
+.hero{padding-top:28px;min-height:min(78svh,760px)}
+h1{font-size:clamp(48px,8.2vw,108px)}
+h1 span{background:linear-gradient(100deg,currentColor 40%,#fff 50%,currentColor 60%) 200% 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:rise .9s cubic-bezier(.2,.8,.2,1) backwards,shine 5s 1.6s ease-in-out infinite}
+h1 span:nth-child(1){color:var(--ink)}
+@keyframes shine{0%,30%{background-position:200% 0}70%,100%{background-position:-50% 0}}
+.vinyl{perspective:900px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transform:translate3d(var(--px,0),var(--py,0),0) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}
+.vinyl::after{content:"";position:absolute;left:8%;right:8%;bottom:-9%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.6),transparent);filter:blur(6px);z-index:-1}
+.paused .rec,.paused .eq i,.paused .marq div{animation-play-state:paused}
+.arm{position:absolute;right:-6%;top:-6%;width:44%;z-index:3;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5));transform-origin:88% 12%;transform:rotate(-8deg);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.paused .arm{transform:rotate(-34deg)}
+.pp{position:absolute;left:50%;bottom:-2%;transform:translate(-50%,50%);z-index:4;display:flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;font:700 12.5px var(--sans);color:var(--ink);background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);white-space:nowrap}
+.np{margin-top:40px}
+.marq{overflow:hidden;margin-top:56px;border-block:1px solid var(--line);padding:14px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marq div{display:flex;width:max-content;gap:34px;animation:mq 34s linear infinite}
+.marq span{display:flex;align-items:center;gap:34px;font:italic 500 26px var(--serif);color:var(--dim);white-space:nowrap}
+.marq span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.facts{margin-top:40px}
+.facts b{font-size:clamp(22px,3vw,30px)}
+.stage{perspective:1400px}
+.device{transform:rotateX(var(--dx,0deg)) scale(var(--ds,1));transform-origin:50% 0;will-change:transform}
+.device iframe{height:min(74svh,700px)}.device.compact iframe{height:min(80svh,780px)}
+.head h2.big,.final h2{background:linear-gradient(180deg,#fff7ec,#f6c88c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.rv{opacity:1}.js .rv{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .8s,transform .9s cubic-bezier(.2,.8,.2,1),filter .8s;transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none;filter:none}
+.card{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(240px circle at var(--mx,50%) var(--my,0),rgba(255,208,138,.9),transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.card:hover::after{opacity:1}
+.steps li::before{transition:box-shadow .3s,background .3s}
+.steps li:hover::before{background:var(--amber);color:#2a1706;box-shadow:0 0 30px rgba(242,164,75,.6)}
+.final{position:relative;overflow:hidden}
+.final>*{position:relative}
+.dock{display:none}
+@media(hover:none){.card::before,.card::after,.spot{display:none}.tour button:hover{transform:none}}
+@media(max-width:940px){.hero{min-height:0;padding-top:12px}.aur i{filter:blur(60px)}.stage{margin-top:44px}.marq{margin-top:40px}.marq span{font-size:21px}
+.tour{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 -24px;padding:4px 24px 14px;scrollbar-width:none}.tour::-webkit-scrollbar{display:none}
+.tour button{flex:0 0 68%;max-width:250px;scroll-snap-align:start;min-height:120px}
+.btn{height:52px}.seg button{height:40px}
+.device{--dx:0deg;--ds:1!important}
+.dock{display:flex;position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:55;gap:10px;align-items:center;padding:8px 8px 8px 16px;border-radius:20px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 14px 40px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.dock.up{transform:none}.dock b{flex:1;font:italic 600 19px var(--serif)}.dock small{display:block;font:450 12px var(--sans);color:var(--dim);font-style:normal}
+footer{padding-bottom:calc(110px + env(safe-area-inset-bottom))}}
+@media(max-width:520px){.wrap{padding:0 18px}.tour{margin:0 -18px;padding:4px 18px 14px}h1{font-size:clamp(46px,15vw,72px)}.hero p{font-size:16.5px}.cta .btn{flex:1;justify-content:center}.card{padding:22px;border-radius:20px}.final{padding:44px 18px;border-radius:24px}.device{padding:0 6px 6px}.pp{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.aur i,.marq div,.glow i{animation:none!important}.js .rv{opacity:1;transform:none;filter:none}}
+
+/* ===== level 3 ===== */
+.disc{width:100%}
+.np{gap:12px;padding:7px 8px 7px 16px;max-width:100%;margin-top:34px}
+.np .nt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pp{position:static;transform:none;height:36px;min-width:92px;justify-content:center;padding:0 14px;border:1px solid rgba(242,164,75,.5);background:rgba(242,164,75,.14);color:var(--amber2);cursor:pointer;flex:none;transition:background .2s}
+.pp:hover{background:rgba(242,164,75,.26)}
+.pi{width:15px;height:15px;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;fill:none}
+.i-play{display:none;fill:currentColor;stroke-linejoin:round}.paused .i-play{display:block}.paused .i-pause{display:none}
+.glow{position:absolute;left:0;right:0;bottom:0;height:52%;display:flex;align-items:flex-end;justify-content:space-between;gap:6px;padding:0 3%;pointer-events:none;-webkit-mask:linear-gradient(0deg,#000,transparent 92%);mask:linear-gradient(0deg,#000,transparent 92%)}
+.glow i{flex:1;height:var(--h);border-radius:8px 8px 0 0;background:linear-gradient(0deg,rgba(242,164,75,.5),rgba(255,208,138,.05));transform-origin:bottom;animation:breathe var(--t) ease-in-out var(--o) infinite alternate;will-change:transform}
+@keyframes breathe{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+.paused .glow i{animation-play-state:paused}
+.faq{max-width:760px;margin:0 auto}.faq .head{max-width:none;text-align:center}
+.faq details{border-top:1px solid var(--line);padding:0}.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;padding:14px 4px;font:600 19px var(--serif)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:12px;height:12px;border-right:2px solid var(--amber);border-bottom:2px solid var(--amber);transform:rotate(45deg) translate(-2px,-2px);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(225deg)}
+.faq details p{margin:0;padding:0 40px 20px 4px;color:var(--dim)}
+.faq details[open] p{animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}}
+.final{margin-top:72px;padding-bottom:110px}
+@media(max-width:940px){body::after{display:none}.js .rv{filter:none;transform:translateY(20px)}.faq summary{font-size:17.5px}.glow{gap:4px}.glow i:nth-child(even){display:none}.np{margin-top:30px}.faq details p{padding-right:8px}}
+@media(max-width:520px){.np .nt{font-size:13px}.pp{min-width:84px}.final{padding-bottom:90px}}
 </style></head><body>
-<div class="pt" id="pt"></div>
+<div class="aur" aria-hidden="true"><i></i><i></i><i></i></div><div class="spot" id="spot" aria-hidden="true"></div><div class="pt" id="pt"></div>
 <nav class="top"><div class="wrap nv"><a class="logo" href="#"><i></i>Amber</a><div class="links"><a href="#tour">Tour</a><a href="#features">Features</a><a href="#install">Install</a><a class="btn sm" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener">Download</a></div></div></nav>
 <div class="wrap">
 <header><div class="hero"><div><h1><span>Play it.</span><span>Save it.</span><span>Keep it.</span></h1>
 <p>Amber is a Windows app that streams YouTube audio without the noise and saves videos up to 4K as a single file on your own computer. The window below is the real interface, so go ahead and use it.</p>
 <div class="cta"><a class="btn" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Amber</a><a class="btn ghost" href="#demo">Try it now</a></div></div>
-<div aria-hidden="true"><div class="vinyl"><div class="rec"></div><div class="sheen"></div></div>
-<div class="np"><div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>Playing from your own library</div></div></div>
-<div class="facts"><div><b>One file. No install.</b>Amber runs from a single Amber.exe. Your downloads, queue and settings stay in the folder next to it.</div><div><b>Up to 4K</b>Size and codec shown before you start.</div><div><b>200 tracks</b>Load a whole playlist or album at once.</div><div><b>MP4 or MKV</b>Video and audio merged into one file.</div></div></header>
+<div class="disc"><div aria-hidden="true"><div class="vinyl" id="vinyl"><div class="rec"></div><div class="sheen"></div><svg class="arm" viewBox="0 0 200 220" fill="none"><circle cx="176" cy="26" r="20" fill="#2b1a1d" stroke="#5a3a3f" stroke-width="3"/><path d="M176 26L70 170" stroke="#e9d3bd" stroke-width="8" stroke-linecap="round"/><rect x="48" y="160" width="34" height="20" rx="4" transform="rotate(-54 65 170)" fill="#ffd08a"/></svg></div></div>
+<div class="np"><div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="nt">Playing from your own library</span><button class="pp" id="pp" type="button" aria-pressed="true"><svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M8 5l11 7-11 7z"/></svg><span id="ppt">Pause</span></button></div></div></div>
+<div class="marq" aria-hidden="true"><div><span>Streams audio</span><span>Saves up to 4K</span><span>Merges to MP4 or MKV</span><span>Keeps files on your PC</span><span>Loads 200 tracks</span><span>Retries in one click</span><span>Streams audio</span><span>Saves up to 4K</span><span>Merges to MP4 or MKV</span><span>Keeps files on your PC</span><span>Loads 200 tracks</span><span>Retries in one click</span></div></div>
+<div class="facts rv"><div><b>One file. No install.</b>Amber runs from a single Amber.exe. Your downloads, queue and settings stay in the folder next to it.</div><div><b>Up to 4K</b>Size and codec shown before you start.</div><div><b>200 tracks</b>Load a whole playlist or album at once.</div><div><b>MP4 or MKV</b>Video and audio merged into one file.</div></div></header>
 
 <div class="stage" id="demo"><div class="bar"><h2>Live demo</h2>
 <div class="seg" role="group" aria-label="Window size"><button aria-pressed="true" data-w="wide">Full window</button><button aria-pressed="false" data-w="compact">Small window</button></div></div>
 <div class="device" id="device"><div class="chrome" aria-hidden="true"><em>Amber</em><span></span><span></span><span></span></div><iframe id="app" title="Amber interface demo"></iframe></div>
 <p class="note">A demo with sample songs and videos. Nothing is fetched from YouTube or saved to your device. The real app does both.</p></div>
 
-<section id="tour"><div class="head"><h2 class="big">Six tabs, one calm window</h2><p>Pick one and the demo above jumps to it.</p></div>
-<div class="tour" id="tourbtns">
+<section id="tour"><div class="head rv"><h2 class="big">Six tabs, one calm window</h2><p>Pick one and the demo above jumps to it.</p></div>
+<div class="tour rv" id="tourbtns">
 <button data-t="home"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg><b>Home</b><span>Shelves of music picked for your evening.</span></button>
 <button data-t="player"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg><b>Player</b><span>Cover, seek bar, queue, shuffle and repeat.</span></button>
 <button data-t="browse"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><b>Browse</b><span>Search, or paste any YouTube link to play it.</span></button>
@@ -146,7 +225,7 @@ footer p{margin:0;max-width:44em}
 <button data-t="download"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg><b>Download</b><span>Videos up to 4K with the quality you choose.</span></button>
 <button data-t="setup"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><b>Setup</b><span>Search access, the converter and updates.</span></button></div></section>
 
-<section id="features"><div class="head"><h2 class="big">Made for people who want to own their files</h2></div>
+<section id="features"><div class="head rv"><h2 class="big">Made for people who want to own their files</h2></div>
 <div class="bento">
 <div class="card c3"><h3>Audio that just plays</h3><p>Paste a video, Short, album or playlist link and Amber queues it. Playlists and albums load up to 200 tracks at once.</p><div class="vis"><div class="chips"><i>Video</i><i>Short</i><i>Album</i><i class="hot">Playlist</i></div><div class="eq lg" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
 <div class="card c3"><h3>Every quality, honestly listed</h3><p>See each resolution with its codec and size before you start. Amber marks the smallest file and tells you when a format needs a newer player.</p><div class="vis ladder" aria-hidden="true"><div><b>360p</b><i style="--w:8%"></i></div><div><b>720p</b><i style="--w:17%"></i></div><div class="hot"><b>1080p</b><i style="--w:25%"></i></div><div><b>1440p</b><i style="--w:33%"></i></div><div><b>4K</b><i style="--w:50%"></i></div><div><b>8K</b><i style="--w:100%"></i></div></div></div>
@@ -156,9 +235,15 @@ footer p{margin:0;max-width:44em}
 <div class="card c6"><div class="tx"><h3>Fits any window</h3><p>Wide desktop layout or a small window on the side of your screen. The design adapts and the Download button stays in reach.</p></div><div class="minis" aria-hidden="true"><div class="mini w"></div><div class="mini n"></div></div></div>
 </div></section>
 
-<section id="install"><div class="head"><h2 class="big">Ready in three steps</h2></div>
-<ol class="steps"><li><b>Download</b><span>Open the Google Drive folder and save Amber.exe.</span></li><li><b>Give it a folder</b><span>Put it in its own folder, such as Desktop\Amber. Your files are saved beside it.</span></li><li><b>Open and paste</b><span>Launch Amber, paste a link in Browse or Download, and go.</span></li></ol>
-<div class="final"><h2>Get Amber for Windows</h2><p>Free download from Google Drive. If the window opens blank, install the Microsoft WebView2 Runtime.</p><a class="btn" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener">Download Amber</a></div></section>
+<section id="install"><div class="head rv"><h2 class="big">Ready in three steps</h2></div>
+<ol class="steps rv"><li><b>Download</b><span>Open the Google Drive folder and save Amber.exe.</span></li><li><b>Give it a folder</b><span>Put it in its own folder, such as Desktop\Amber. Your files are saved beside it.</span></li><li><b>Open and paste</b><span>Launch Amber, paste a link in Browse or Download, and go.</span></li></ol>
+<div class="faq rv"><div class="head" style="margin-top:88px"><h2 class="big">Good to know</h2></div>
+<details><summary>Where are my files saved?</summary><p>Beside Amber.exe. Give Amber its own folder, such as Desktop\Amber, and your downloads, queue and settings all stay inside it.</p></details>
+<details><summary>Do I need to install anything?</summary><p>No installer. Amber runs from a single Amber.exe. If the window opens blank, install the Microsoft WebView2 Runtime.</p></details>
+<details><summary>Does the demo download anything?</summary><p>No. The demo uses sample songs and videos. Nothing is fetched from YouTube or saved to your device. The real app does both.</p></details>
+<details><summary>Is it okay to save any video?</summary><p>Save only what you have the right to keep. Amber is for personal use, and copying YouTube content may breach YouTube's Terms of Service.</p></details></div>
+<div class="final rv"><div class="glow" aria-hidden="true"><i style="--h:38%;--t:2.6s;--o:-0.2s"></i><i style="--h:62%;--t:3.1s;--o:-1.1s"></i><i style="--h:46%;--t:2.3s;--o:-0.6s"></i><i style="--h:80%;--t:3.6s;--o:-1.9s"></i><i style="--h:54%;--t:2.8s;--o:-0.4s"></i><i style="--h:92%;--t:3.3s;--o:-1.4s"></i><i style="--h:66%;--t:2.5s;--o:-2.2s"></i><i style="--h:44%;--t:3.0s;--o:-0.9s"></i><i style="--h:74%;--t:3.4s;--o:-0.1s"></i><i style="--h:58%;--t:2.7s;--o:-1.7s"></i><i style="--h:86%;--t:3.2s;--o:-0.7s"></i><i style="--h:50%;--t:2.4s;--o:-2.0s"></i><i style="--h:70%;--t:3.5s;--o:-1.2s"></i><i style="--h:42%;--t:2.9s;--o:-0.3s"></i><i style="--h:64%;--t:2.6s;--o:-1.6s"></i><i style="--h:88%;--t:3.3s;--o:-0.8s"></i><i style="--h:52%;--t:3.0s;--o:-2.3s"></i><i style="--h:76%;--t:2.5s;--o:-1.0s"></i><i style="--h:48%;--t:3.4s;--o:-0.5s"></i><i style="--h:60%;--t:2.8s;--o:-1.8s"></i><i style="--h:82%;--t:3.1s;--o:-0.2s"></i><i style="--h:40%;--t:2.6s;--o:-1.3s"></i><i style="--h:68%;--t:3.5s;--o:-0.6s"></i><i style="--h:56%;--t:2.9s;--o:-2.1s"></i></div><h2>Get Amber for Windows</h2><p>Free download from Google Drive. If the window opens blank, install the Microsoft WebView2 Runtime.</p><a class="btn" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener">Download Amber</a></div></section>
+<div class="dock" id="dock"><b>Amber<small>Free for Windows</small></b><a class="btn sm" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener">Download</a></div>
 <footer><p>For personal use only. Downloading copies of YouTube content may breach YouTube's Terms of Service, so save only what you have the right to keep. Amber is not affiliated with YouTube or Google.</p><span class="logo" style="font-size:22px"><i></i>Amber</span></footer>
 </div>
 <script>
@@ -167,11 +252,33 @@ const f=document.getElementById('app'),dev=document.getElementById('device');f.s
 document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));dev.classList.toggle('compact',b.dataset.w==='compact')});
 document.querySelectorAll('#tourbtns button').forEach(b=>b.onclick=()=>{try{f.contentDocument.querySelector('.nav button[data-tab="'+b.dataset.t+'"]').click()}catch(e){}document.querySelectorAll('#tourbtns button').forEach(x=>x.classList.toggle('on',x===b));document.getElementById('demo').scrollIntoView({behavior:'smooth',block:'start'})});
 </script>
-<script>(function(){var d=document,r=d.documentElement,pt=d.getElementById('pt'),nv=d.querySelector('nav.top');
-function on(){var h=r.scrollHeight-innerHeight;pt.style.transform='scaleX('+(h>0?scrollY/h:0)+')';nv.classList.toggle('s',scrollY>8)}
-addEventListener('scroll',on,{passive:true});on();
-var cs=d.querySelectorAll('.card');
-if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){cs.forEach(function(c){c.classList.add('in')})}
-else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35});cs.forEach(function(c){io.observe(c)})}
-cs.forEach(function(c){c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-b.left+'px');c.style.setProperty('--my',e.clientY-b.top+'px')})})})();
+<script>(function(){var d=document,r=d.documentElement,q=function(s){return d.querySelector(s)},qa=function(s){return d.querySelectorAll(s)};
+var pt=q('#pt'),nv=q('nav.top'),dev=q('#device'),dock=q('#dock'),demo=q('#demo'),tick=0;
+var fine=matchMedia('(hover:hover) and (pointer:fine)').matches,calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function frame(){tick=0;var h=r.scrollHeight-innerHeight,y=scrollY;pt.style.transform='scaleX('+(h>0?y/h:0)+')';nv.classList.toggle('s',y>8);
+var b=demo.getBoundingClientRect(),t=Math.min(1,Math.max(0,(innerHeight-b.top)/(innerHeight*.75)));
+if(!calm&&innerWidth>940){dev.style.setProperty('--dx',(16*(1-t)).toFixed(2)+'deg');dev.style.setProperty('--ds',(.92+.08*t).toFixed(3))}
+if(dock)dock.classList.toggle('up',y>innerHeight*.6)}
+addEventListener('scroll',function(){if(!tick)tick=requestAnimationFrame(frame)},{passive:true});addEventListener('resize',frame);frame();
+var cs=qa('.card,.rv');
+if(!('IntersectionObserver' in window)||calm){cs.forEach(function(c){c.classList.add('in')})}
+else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.2,rootMargin:'0px 0px -6% 0px'});cs.forEach(function(c,i){c.style.setProperty('--d',(i%3)*.08+'s');io.observe(c)})}
+qa('.card').forEach(function(c){c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-b.left+'px');c.style.setProperty('--my',e.clientY-b.top+'px')})});
+/* count-up */
+qa('.facts b').forEach(function(b){var m=b.textContent.match(/^(Up to )?(\d+)(.*)$/);if(!m||calm)return;var n=+m[2],pre=m[1]||'',suf=m[3];b.textContent=pre+'0'+suf;
+var o=new IntersectionObserver(function(e){if(!e[0].isIntersecting)return;o.disconnect();var s=performance.now();(function f(t){var k=Math.min(1,(t-s)/1200),v=Math.round(n*(1-Math.pow(1-k,3)));b.textContent=pre+v+suf;if(k<1)requestAnimationFrame(f)})(s)},{threshold:.6});o.observe(b)});
+/* vinyl play/pause + tilt */
+var vin=q('#vinyl'),host=vin&&vin.parentNode.parentNode,pp=q('#pp'),ppt=q('#ppt');
+function tog(){var p=r.classList.toggle('paused');ppt.textContent=p?'Play':'Pause';pp.setAttribute('aria-pressed',!p)}
+if(vin){vin.addEventListener('click',tog);pp.addEventListener('click',tog)}
+if(fine&&!calm){addEventListener('pointermove',function(e){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
+if(vin){vin.style.setProperty('--ry',(x*16).toFixed(1)+'deg');vin.style.setProperty('--rx',(-y*16).toFixed(1)+'deg');vin.style.setProperty('--px',(x*-14).toFixed(1)+'px');vin.style.setProperty('--py',(y*-10).toFixed(1)+'px')}
+var s=q('#spot');if(s){s.style.setProperty('--sx',e.clientX+'px');s.style.setProperty('--sy',e.clientY+'px')}},{passive:true});
+/* magnetic buttons */
+qa('.btn:not(.sm)').forEach(function(b){b.addEventListener('pointermove',function(e){var k=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-k.left-k.width/2)*.14).toFixed(1)+'px,'+((e.clientY-k.top-k.height/2)*.22-2).toFixed(1)+'px)'});b.addEventListener('pointerleave',function(){b.style.transform=''})})}
+/* pause offscreen infinite animations */
+if('IntersectionObserver' in window){var hb=q('.hero');new IntersectionObserver(function(e){r.classList.toggle('offhero',!e[0].isIntersecting)}).observe(hb)}
+/* tour: keep active button centered on mobile */
+qa('#tourbtns button').forEach(function(b){b.addEventListener('click',function(){if(innerWidth<=940)b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})})});
+})();
 </script></body></html>
