@@ -343,7 +343,6 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .btn.ghost:hover{background:rgba(238,240,255,.11);border-color:rgba(195,203,255,.35)}
 .links a:not(.btn){position:relative}
 .links a.act:not(.btn){color:var(--ink);background:rgba(127,140,240,.14)}
-nav.top.s{box-shadow:0 10px 40px rgba(3,4,20,.4)}
 footer p{opacity:.8}
 img{-webkit-user-drag:none}
 @media(prefers-reduced-motion:no-preference){.head h2.big{transition:letter-spacing .6s}}
@@ -407,6 +406,10 @@ img,svg{-webkit-user-drag:none;user-drag:none}
 /* ===== fix: now-playing pill hugs its content and stays centred ===== */
 .np{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;justify-content:center;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 12px 34px rgba(3,4,20,.45),inset 0 1px 0 rgba(238,240,255,.08)}
 .np .pp{flex:none}
+
+/* ===== scrolled nav: solid glass pill, no full-width layer ===== */
+nav.top,nav.top.s{background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+nav.top.s .nv{background:rgba(11,13,28,.92);border-color:rgba(238,240,255,.14);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5)}
 </style></head><body>
 <div class="aur" aria-hidden="true"><i></i><i></i><i></i></div><div class="spot" id="spot" aria-hidden="true"></div><div class="pt" id="pt"></div>
 <nav class="top" id="top" aria-label="Main"><div class="nv"><a class="logo" href="#"><i></i>Amber</a><div class="links" id="links"><a href="#demo">Demo</a><a href="#tour">Tour</a><a href="#screens">Screens</a><a href="#features">Features</a><a href="#install">Install</a><a href="#faq">FAQ</a><a class="btn sm" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener">Download</a></div><button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i><i></i></button></div></nav>
