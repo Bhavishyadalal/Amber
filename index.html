@@ -526,7 +526,17 @@ vol.addEventListener('input',function(){vol.style.setProperty('--v',vol.value+'%
 au.addEventListener('error',function(){on=false;ui(false);if(nt)nt.textContent='Music unavailable right now'});
 document.addEventListener('visibilitychange',function(){if(!on)return;if(document.hidden){cancelAnimationFrame(ramp);au.pause()}else{au.volume=0;var p=au.play();if(p&&p.then)p.then(function(){glide(level(),600)},function(){on=false;ui(false)})}});
 ['pointerenter','touchstart','focus'].forEach(function(ev){[vin,pp,mini].forEach(function(el){if(el)el.addEventListener(ev,warm,{once:true,passive:true})})});
-if(recall('amber-music')==='on'){warm();au.volume=0;var ap=au.play();if(ap&&ap.then)ap.then(function(){on=true;ui(true);glide(level(),1200)},function(){})}
+/* autoplay on open; if the browser blocks sound, the first tap/click/key anywhere starts it */
+if(recall('amber-music')!=='off'){warm();au.volume=0;var ap=au.play();
+function arm(){var evs=['pointerdown','pointerup','touchend','keydown','click'];
+if(nt&&!on)nt.textContent='Tap anywhere to start the music';
+function drop(){evs.forEach(function(v){document.removeEventListener(v,go,true)})}
+function go(e){if(on){drop();return}
+if(e&&e.target&&e.target.closest&&e.target.closest('#vinyl,#pp,#mini'))return;
+if(e&&e.type==='keydown'&&e.key==='Escape')return;
+start();if(on)drop()}
+evs.forEach(function(v){document.addEventListener(v,go,true)})}
+if(ap&&ap.then)ap.then(function(){on=true;ui(true);glide(level(),1200)},arm);else arm()}
 }
 if(vin){vin.addEventListener('click',tog);pp.addEventListener('click',tog);mini.addEventListener('click',tog)}
 if(fine&&!calm){addEventListener('pointermove',function(e){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
