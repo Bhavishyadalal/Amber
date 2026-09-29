@@ -418,17 +418,40 @@ nav.top.s .nv{background:rgba(11,13,28,.92);border-color:rgba(238,240,255,.14);-
 .vol input{-webkit-appearance:none;appearance:none;width:78px;height:4px;border-radius:99px;margin:0;cursor:pointer;background:linear-gradient(90deg,var(--amber) var(--v,70%),rgba(255,255,255,.16) var(--v,70%))}
 .vol input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;background:var(--ink);border:0;box-shadow:0 0 0 3px rgba(0,0,0,.3)}
 .vol input::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--ink);border:0;box-shadow:0 0 0 3px rgba(0,0,0,.3)}
-.vol input:focus-visible,.mini:focus-visible{outline:2px solid var(--amber);outline-offset:5px}
+.vol input:focus-visible,.mbtn:focus-visible{outline:2px solid var(--amber);outline-offset:5px}
 .np .nt{white-space:nowrap}
-.mini{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:46px;height:46px;padding:0;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);cursor:pointer;opacity:0;pointer-events:none;transform:scale(.8);transition:opacity .3s,transform .3s;-webkit-tap-highlight-color:transparent}
-.offhero .mini{opacity:1;pointer-events:auto;transform:none}
-.mini i{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,var(--amber) 0 20%,#0f1226 22% 100%);box-shadow:inset 0 0 0 2px #4a5299;animation:spin 6s linear infinite}
-.paused .mini i{animation-play-state:paused}
+.mbtn{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:46px;height:46px;padding:0;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);cursor:pointer;opacity:0;pointer-events:none;transform:scale(.8);transition:opacity .3s,transform .3s;-webkit-tap-highlight-color:transparent}
+.offhero .mbtn{opacity:1;pointer-events:auto;transform:none}
+.mbtn i{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,var(--amber) 0 20%,#0f1226 22% 100%);box-shadow:inset 0 0 0 2px #4a5299;animation:spin 6s linear infinite}
+.paused .mbtn i{animation-play-state:paused}
 @media(max-width:520px){.vol{display:none}}
+
+/* ===== v4 polish (website only) ===== */
+/* Fits any window: bullet-proof layout */
+.card.c6{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center}
+.card.c6 .tx{min-width:0}
+.minis{position:relative;display:flex;align-items:flex-end;gap:18px;flex:none;min-width:0}
+.minis figure{margin:0;display:flex;flex-direction:column;gap:10px;flex:none}
+.minis figcaption{font:600 12.5px var(--sans);color:var(--faint);text-align:center}
+.mini{display:block;flex:none;position:relative;height:130px;overflow:hidden;isolation:isolate;
+ background:linear-gradient(rgba(238,240,255,.12) 0 18px,transparent 18px),repeating-linear-gradient(rgba(238,240,255,.09) 0 6px,transparent 6px 16px) 12px 32px/calc(100% - 24px) 62px no-repeat,rgba(11,13,28,.55)}
+.mini.w{width:230px}.mini.n{width:86px}
+.mini::before{content:"";position:absolute;left:8px;top:6px;width:6px;height:6px;border-radius:50%;background:rgba(238,240,255,.32);box-shadow:10px 0 0 rgba(238,240,255,.22),20px 0 0 rgba(238,240,255,.14)}
+@media(max-width:700px){.card.c6{grid-template-columns:minmax(0,1fr)}.minis{width:100%}.minis figure:first-child{flex:1}.mini.w{flex:none;width:100%}}
+/* bento: visuals sit at the bottom so cards feel balanced */
+.bento .card:not(.c6){display:flex;flex-direction:column}
+.bento .card:not(.c6)>p{margin-bottom:26px}
+.bento .card:not(.c6) .vis{margin-top:auto}
+.eq.lg{width:100%;justify-content:space-between;height:56px}.eq.lg i{width:auto;flex:1;max-width:7px}
+/* record label: spindle no longer sits on the wordmark */
+.rec::after{padding-bottom:7%;place-items:end center}
+/* now-playing pill */
+.np .vol input{width:64px}.np{gap:10px}
+#bgm{position:fixed;left:0;top:0;width:2px;height:2px;opacity:.01;pointer-events:none;z-index:-2}
 </style></head><body>
 <div class="aur" aria-hidden="true"><i></i><i></i><i></i></div><div class="spot" id="spot" aria-hidden="true"></div><div class="pt" id="pt"></div>
-<audio id="bgm" loop preload="none" src="assets/amber-windowpane.mp3"></audio>
-<button class="mini" id="mini" type="button" aria-label="Play music" aria-pressed="false"><i></i></button>
+<video id="bgm" loop playsinline preload="none" src="assets/amber-windowpane.mp3" aria-hidden="true" tabindex="-1"></video>
+<button class="mbtn" id="mini" type="button" aria-label="Play music" aria-pressed="false"><i></i></button>
 <nav class="top" id="top" aria-label="Main"><div class="nv"><a class="logo" href="#"><i></i>Amber</a><div class="links" id="links"><a href="#demo">Demo</a><a href="#tour">Tour</a><a href="#screens">Screens</a><a href="#features">Features</a><a href="#install">Install</a><a href="#faq">FAQ</a><a class="btn sm" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener">Download</a></div><button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i><i></i></button></div></nav>
 <div class="wrap">
 <header><div class="hero"><div class="depth" id="depth" aria-hidden="true"><b>Amber</b></div><div><h1><span>Play it.</span><span>Save it.</span><span>Keep it.</span></h1>
@@ -462,7 +485,7 @@ nav.top.s .nv{background:rgba(11,13,28,.92);border-color:rgba(238,240,255,.14);-
 <div class="card"><h3>Video and audio in one file</h3><p>Amber downloads them separately at the best quality, then merges them into one MP4 or MKV. You see the merge happen.</p><div class="vis merge" aria-hidden="true"><i></i><i></i><em>One MP4 or MKV</em></div></div>
 <div class="card"><h3>Whole playlists in one go</h3><p>Tick the videos you want, filter long lists, shift-click to pick a range, and choose one quality for all.</p><div class="vis pl" aria-hidden="true"><div>Live at the lake</div><div class="on">Evening drive</div><div class="on">Slow rain</div><div class="on">Paper lanterns</div></div></div>
 <div class="card"><h3>Downloads you can trust</h3><p>Amber checks free disk space first, shows speed and time left, retries failures with one click and lets you cancel anytime.</p><div class="vis" aria-hidden="true"><div class="pb"><i></i></div><div class="pm"><span>Speed and time left</span><span>Retry or cancel</span></div></div></div>
-<div class="card c6"><div class="tx"><h3>Fits any window</h3><p>Wide desktop layout or a small window on the side of your screen. The design adapts and the Download button stays in reach.</p></div><div class="minis" aria-hidden="true"><div class="mini w"></div><div class="mini n"></div></div></div>
+<div class="card c6"><div class="tx"><h3>Fits any window</h3><p>Wide desktop layout or a small window on the side of your screen. The design adapts and the Download button stays in reach.</p></div><div class="minis" aria-hidden="true"><figure><div class="mini w"></div><figcaption>Full window</figcaption></figure><figure><div class="mini n"></div><figcaption>Small window</figcaption></figure></div></div>
 </div></section>
 
 <section id="install"><div class="head rv"><h2 class="big">Ready in three steps</h2></div>
@@ -512,12 +535,13 @@ var au=q('#bgm'),nt=q('#nt'),vol=q('#vol'),volw=q('#volw'),mini=q('#mini'),on=fa
 function keep(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function recall(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function level(){return Math.pow((+vol.value||0)/100,2)}
-function ui(p){r.classList.toggle('paused',!p);ppt.textContent=p?'Pause':'Play';pp.setAttribute('aria-pressed',p?'true':'false');mini.setAttribute('aria-pressed',p?'true':'false');mini.setAttribute('aria-label',p?'Pause music':'Play music');if(nt)nt.textContent=p?'Now playing \u00b7 Windowpane':'Tap the record to play music'}
+function ui(p){r.classList.toggle('paused',!p);ppt.textContent=p?'Pause':'Play';pp.setAttribute('aria-pressed',p?'true':'false');mini.setAttribute('aria-pressed',p?'true':'false');mini.setAttribute('aria-label',p?'Pause music':'Play music');if(nt)nt.textContent=p?'Now playing \u00b7 Windowpane':'Tap the record to play'}
 function glide(to,ms,done){cancelAnimationFrame(ramp);var from=au.volume,t0=performance.now();(function f(t){var k=ms>0?Math.min(1,(t-t0)/ms):1;au.volume=Math.max(0,Math.min(1,from+(to-from)*k));if(k<1)ramp=requestAnimationFrame(f);else if(done)done()})(t0)}
 function warm(){if(warmed||!au)return;warmed=true;au.preload='auto';try{au.load()}catch(e){}}
-function start(auto){if(!au)return;warm();au.volume=0;var p=au.play();on=true;ui(true);if(p&&p.then){p.then(function(){glide(level(),900)},function(){on=false;ui(false)})}else glide(level(),900);keep('amber-music','on')}
+function start(auto){if(!au)return;warm();au.muted=false;au.volume=0;var p=au.play();on=true;ui(true);if(p&&p.then){p.then(function(){glide(level(),900)},function(){on=false;ui(false)})}else glide(level(),900);keep('amber-music','on')}
 function stop(){on=false;ui(false);keep('amber-music','off');glide(0,450,function(){if(!on)au.pause()})}
-function tog(){on?stop():start()}
+function tog(){if(on&&au.muted){unmute();return}on?stop():start()}
+function unmute(){if(!au.muted)return;au.muted=false;au.volume=0;ui(true);var p=au.play();if(p&&p.then)p.then(function(){glide(level(),900)},function(){au.muted=true;if(nt)nt.textContent='Tap anywhere for sound'});else glide(level(),900)}
 if(au){
 try{au.volume=.5;if(Math.abs(au.volume-.5)>.01&&volw)volw.hidden=true}catch(e){}
 var sv=+recall('amber-vol');if(sv>=0&&sv<=100&&recall('amber-vol')!==null)vol.value=sv;
@@ -529,14 +553,24 @@ document.addEventListener('visibilitychange',function(){if(!on)return;if(documen
 /* autoplay on open; if the browser blocks sound, the first tap/click/key anywhere starts it */
 if(recall('amber-music')!=='off'){warm();au.volume=0;var ap=au.play();
 function arm(){var evs=['pointerdown','pointerup','touchend','keydown','click'];
-if(nt&&!on)nt.textContent='Tap anywhere to start the music';
+if(nt&&!on)nt.textContent='Tap anywhere to play music';
 function drop(){evs.forEach(function(v){document.removeEventListener(v,go,true)})}
 function go(e){if(on){drop();return}
 if(e&&e.target&&e.target.closest&&e.target.closest('#vinyl,#pp,#mini'))return;
 if(e&&e.type==='keydown'&&e.key==='Escape')return;
 start();if(on)drop()}
 evs.forEach(function(v){document.addEventListener(v,go,true)})}
-if(ap&&ap.then)ap.then(function(){on=true;ui(true);glide(level(),1200)},arm);else arm()}
+function armU(){var evs=['pointerdown','pointerup','touchend','keydown','click'];
+function drop(){evs.forEach(function(v){document.removeEventListener(v,go,true)})}
+function go(e){if(!au.muted){drop();return}
+if(e&&e.target&&e.target.closest&&e.target.closest('#vinyl,#pp,#mini'))return;
+if(e&&e.type==='keydown'&&(e.key==='Escape'||e.key==='Shift'||e.key==='Control'||e.key==='Alt'||e.key==='Meta'))return;
+unmute();if(!au.muted)drop()}
+evs.forEach(function(v){document.addEventListener(v,go,true)})}
+function quiet(){au.muted=true;au.volume=0;var q2=au.play();
+function ok(){on=true;ui(true);if(nt)nt.textContent='Tap anywhere for sound';armU()}
+if(q2&&q2.then)q2.then(ok,arm);else ok()}
+if(ap&&ap.then)ap.then(function(){if(navigator.userActivation&&!navigator.userActivation.hasBeenActive){quiet();return}on=true;ui(true);glide(level(),1200);setTimeout(function(){if(au.paused&&on){cancelAnimationFrame(ramp);quiet()}},500)},quiet);else arm()}
 }
 if(vin){vin.addEventListener('click',tog);pp.addEventListener('click',tog);mini.addEventListener('click',tog)}
 if(fine&&!calm){addEventListener('pointermove',function(e){var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
