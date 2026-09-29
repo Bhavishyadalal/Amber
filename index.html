@@ -282,15 +282,34 @@ nav.top.s .nv{max-width:min(800px,100%);padding:6px 6px 6px 16px}}
 .mega{margin:44px auto 0;font-size:clamp(84px,27vw,200px)}
 .tour,.gtabs{-webkit-mask:linear-gradient(90deg,#000 88%,transparent);mask:linear-gradient(90deg,#000 88%,transparent)}
 footer{padding-top:24px}}
+/* ===== descender / overhang fix for gradient text ===== */
+h1 span{padding:.06em .12em .22em 0;margin:-.06em 0 -.22em}
+h1 span:last-child{margin-bottom:0}
+h2.big,.final h2{padding:.06em .08em .2em 0;margin-top:-.06em}
+h2.big{margin-bottom:calc(12px - .2em)}
+.final h2{margin-bottom:calc(14px - .2em)}
+.big .w{padding:.06em .1em .24em 0;margin:-.06em 0 -.24em}
+.mega{padding-top:.08em;margin-top:calc(24px - .08em)}
+@media(max-width:940px){.mega{margin-top:calc(44px - .08em)}}
+/* ===== hero wordmark (single, clean) ===== */
+.depth{order:2;position:relative;grid-column:1/-1;margin-top:8px;text-align:center;pointer-events:none;user-select:none;font:italic 600 min(29vw,360px)/.95 var(--serif);letter-spacing:-.05em;opacity:0;transform:translateY(40px);transition:opacity 1.4s .2s ease,transform 1.6s .2s cubic-bezier(.2,.8,.2,1)}
+.depth.go{opacity:1;transform:none}
+.depth::after{content:"";position:absolute;left:12%;right:12%;bottom:-2%;height:36%;z-index:-1;background:radial-gradient(closest-side,rgba(127,140,240,.26),transparent);filter:blur(30px)}
+.depth b{display:block;padding:.08em .1em .04em 0;font-weight:inherit;white-space:nowrap;background-image:linear-gradient(180deg,rgba(238,240,255,.82) 0,rgba(195,203,255,.44) 42%,rgba(127,140,240,.09) 78%,transparent 98%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+@media(prefers-reduced-motion:reduce){.depth{opacity:1;transform:none;transition:none}}
+.hero{min-height:0;row-gap:0}
+.depth{margin-top:-3vw}
+@media(max-width:940px){.hero{row-gap:0}.depth{margin-top:8px}}
+@media(max-width:520px){.np{gap:10px;padding-left:14px}.np .eq i:nth-child(n+7){display:none}}
 </style></head><body>
 <div class="aur" aria-hidden="true"><i></i><i></i><i></i></div><div class="spot" id="spot" aria-hidden="true"></div><div class="pt" id="pt"></div>
 <nav class="top" id="top" aria-label="Main"><div class="nv"><a class="logo" href="#"><i></i>Amber</a><div class="links" id="links"><a href="#demo">Demo</a><a href="#tour">Tour</a><a href="#screens">Screens</a><a href="#features">Features</a><a href="#install">Install</a><a href="#faq">FAQ</a><a class="btn sm" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener">Download</a></div><button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i><i></i></button></div></nav>
 <div class="wrap">
-<header><div class="hero"><div><h1><span>Play it.</span><span>Save it.</span><span>Keep it.</span></h1>
+<header><div class="hero"><div class="depth" id="depth" aria-hidden="true"><b>Amber</b></div><div><h1><span>Play it.</span><span>Save it.</span><span>Keep it.</span></h1>
 <p>Amber is a Windows app that streams YouTube audio without the noise and saves videos up to 4K as a single file on your own computer. The window below is the real interface, so go ahead and use it.</p>
 <div class="cta"><a class="btn" href="https://drive.google.com/drive/folders/1Sxj2p1hpDOxUTl4AXl5wK_xl7z_TzOUC?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Amber</a><a class="btn ghost" href="#demo">Try it now</a></div><div class="pills"><span>Free for Windows</span><span>Runs from one Amber.exe</span><span>No installer</span></div></div>
 <div class="disc"><div aria-hidden="true"><div class="vinyl" id="vinyl"><div class="rec"></div><div class="sheen"></div><svg class="arm" viewBox="0 0 200 220" fill="none"><circle cx="176" cy="26" r="20" fill="#1b2040" stroke="#4a5299" stroke-width="3"/><path d="M176 26L70 170" stroke="#d6dbff" stroke-width="8" stroke-linecap="round"/><rect x="48" y="160" width="34" height="20" rx="4" transform="rotate(-54 65 170)" fill="#c3cbff"/></svg></div></div>
-<div class="np"><div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="nt">Playing from your own library</span><button class="pp" id="pp" type="button" aria-pressed="true"><svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M8 5l11 7-11 7z"/></svg><span id="ppt">Pause</span></button></div></div></div>
+<div class="np"><div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="nt">Playing from your library</span><button class="pp" id="pp" type="button" aria-pressed="true"><svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M8 5l11 7-11 7z"/></svg><span id="ppt">Pause</span></button></div></div></div>
 <div class="marq" aria-hidden="true"><div><span>Streams audio</span><span>Saves up to 4K</span><span>Merges to MP4 or MKV</span><span>Keeps files on your PC</span><span>Loads 200 tracks</span><span>Retries in one click</span><span>Streams audio</span><span>Saves up to 4K</span><span>Merges to MP4 or MKV</span><span>Keeps files on your PC</span><span>Loads 200 tracks</span><span>Retries in one click</span></div></div>
 <div class="facts rv"><div><b>One file. No install.</b>Amber runs from a single Amber.exe. Your downloads, queue and settings stay in the folder next to it.</div><div><b>Up to 4K</b>Size and codec shown before you start.</div><div><b>200 tracks</b>Load a whole playlist or album at once.</div><div><b>MP4 or MKV</b>Video and audio merged into one file.</div></div></header>
 
@@ -405,4 +424,5 @@ size();addEventListener('resize',size);addEventListener('pointermove',function(e
 var run=true;d.addEventListener('visibilitychange',function(){run=!d.hidden});
 (function l(t){requestAnimationFrame(l);if(!run)return;x.clearRect(0,0,W,H);var slow=r.classList.contains('paused')?.3:1;for(var i=0;i<P.length;i++){var s=P[i];s.y-=s.s*slow;s.x+=Math.sin(t/2600+s.p)*.18;var dx=s.x-mx,dy=s.y-my,dd=dx*dx+dy*dy;if(dd<14000){var k=(1-dd/14000)*1.6;s.x+=dx/Math.sqrt(dd+1)*k;s.y+=dy/Math.sqrt(dd+1)*k}if(s.y<-8){s.y=H+8;s.x=Math.random()*W}if(s.x<-8)s.x=W+8;if(s.x>W+8)s.x=-8;x.globalAlpha=s.a*(.55+.45*Math.sin(t/900+s.p));x.fillStyle='rgb('+col+')';x.beginPath();x.arc(s.x,s.y,s.r*2.6,0,6.283);x.globalAlpha*=.16;x.fill();x.globalAlpha=s.a*(.55+.45*Math.sin(t/900+s.p));x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);x.fill()}})(0)}
 })();
+(function(){var d=document.getElementById('depth');if(d)requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('go')})})})();
 </script></body></html>
