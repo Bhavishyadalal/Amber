@@ -532,7 +532,9 @@ h1,h2,h3,p,li,span,b,strong{overflow-wrap:anywhere}
 
 /* ===== polish + performance pass ===== */
 .logo,.links a,.links .btn,.rmb,.links button{white-space:nowrap}
-.links{flex-wrap:nowrap;flex:none}.links .btn.sm{flex:none;overflow:visible}
+.links{flex-wrap:nowrap;flex:none}.links .btn.sm{flex:none;overflow:hidden}
+.btn{overflow:hidden}
+.vinyl{border-radius:50%}.vinyl::before,.vinyl::after,.arm{pointer-events:none}
 nav.top.s .nv{max-width:min(1040px,100%)}
 @media(min-width:941px) and (max-width:1120px){.links a:not(.btn){padding:8px 10px;font-size:14px}.links .btn.sm{margin-left:4px;padding:0 15px}nav.top.s .nv{padding:6px 6px 6px 16px;gap:8px}}
 @media(min-width:941px){.tour{grid-template-columns:repeat(7,minmax(0,1fr))}.tour button{padding:14px}}
